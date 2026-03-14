@@ -1,75 +1,79 @@
-import { Navbar } from "@/components/Navbar";
+import { Hero } from "@/components/sections/Hero";
+import { WhyCybercom } from "@/components/sections/WhyCybercom";
+import { Arsenal } from "@/components/sections/Arsenal";
+import { BattleLog } from "@/components/sections/BattleLog";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { Button } from "@/components/UI";
+import { SectionLabel, SectionHeading } from "@/components/SectionTypography";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#08090a] text-[#f7f8f8] font-sans">
+    <main className="flex flex-col">
+      {/* 1. Hero */}
+      <Hero />
 
-      <Navbar />
+      {/* 2. Why CyberCom (Teaser) */}
+      <WhyCybercom />
+      <div className="max-w-[1400px] mx-auto px-6 md:px-8 pb-24 -mt-12">
+        <Link href="/services" className="text-[#8a8f98] hover:text-white flex items-center gap-2 transition-colors">
+          See all services <span className="text-xl">→</span>
+        </Link>
+      </div>
 
-      {/* Hero Content */}
-      <main className="pt-32 md:pt-[180px] px-6 md:px-8 max-w-[1400px] mx-auto flex flex-col">
-
-        {/* Headline */}
-        <h1 className="text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] font-medium tracking-tight max-w-[720px] text-white">
-          The product development<br className="hidden md:block" /> system for teams and agents
-        </h1>
-
-        {/* Subheader flex row */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between w-full mt-10 md:mt-12">
-
-          {/* Left Description */}
-          <div className="text-[19px] leading-[1.6] text-[#8a8f98]">
-            <p>Purpose-built for planning and building products.</p>
-            <p>Designed for the AI era.</p>
+      {/* 3. Services Preview */}
+      <section className="py-24 bg-[#0d0e0f]/50">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-8 text-center">
+          <SectionLabel className="justify-center flex">{"// SERVICE PREVIEW"}</SectionLabel>
+          <SectionHeading>Everything You Need to Run a Serious CTF</SectionHeading>
+          
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "College CTF Hosting", desc: "Built for tech fests and inter-college battles." },
+              { title: "Attack-Defence Events", desc: "Live competitions where teams attack and defend services." },
+              { title: "Custom Challenge Dev", desc: "Tailored challenges for your specific skill domains." },
+              { title: "White-Label Branding", desc: "Your event, your brand, your glory. CyberCom stays invisible." }
+            ].map((service) => (
+              <div key={service.title} className="p-8 rounded-2xl border border-[#222324] bg-[#0d0e0f] text-left hover:border-[#8a8f98]/30 transition-all">
+                <h3 className="text-lg font-medium text-white mb-3">{service.title}</h3>
+                <p className="text-[14px] text-[#8a8f98] leading-relaxed">{service.desc}</p>
+              </div>
+            ))}
           </div>
 
-          {/* Right Badge */}
-          <div className="mt-6 md:mt-0 flex items-center gap-3 text-[14px]">
-            <span className="font-semibold text-white">New</span>
-            <a href="#" className="text-[#8a8f98] hover:text-white transition-colors flex items-center gap-1 group">
-              Cybercom Diffs (Beta)
-              <span className="transform group-hover:translate-x-0.5 transition-transform">→</span>
-            </a>
-          </div>
-        </div>
-
-        {/* Partial App Mockup Container seen at the bottom */}
-        <div className="mt-16 w-full h-[200px] border border-[#222324] rounded-t-xl bg-[#0f1011] overflow-hidden flex flex-col relative">
-
-          {/* Mockup Header Bar */}
-          <div className="h-10 border-b border-[#222324] flex items-center px-4 bg-[#161718]">
-
-            {/* Tabs */}
-            <div className="flex items-center gap-1 h-full">
-              {/* Active Tab */}
-              <div className="flex items-center gap-2 bg-[#1e1f20] border-x border-t border-[#222324] rounded-t-md px-3 h-full pt-1 -mb-[1px]">
-                <div className="w-3 h-3 rounded-full border border-white/40 flex items-center justify-center overflow-hidden relative opacity-80">
-                  <div className="absolute w-[150%] h-[1px] bg-white/40 transform -rotate-45" />
-                  <div className="absolute w-[150%] h-[1px] bg-white/40 transform -rotate-45 translate-y-[-2px]" />
-                  <div className="absolute w-[150%] h-[1px] bg-white/40 transform -rotate-45 translate-y-[2px]" />
-                </div>
-                <span className="text-[12px] text-white font-medium">Cybercom</span>
-                <span className="text-[#8a8f98] text-[10px] ml-1">×</span>
-              </div>
-
-              {/* Inactive Tab */}
-              <div className="flex items-center gap-2 px-3 h-full pt-1">
-                <span className="text-[12px] text-[#8a8f98] font-medium">Inbox</span>
-              </div>
-            </div>
-
-            {/* Mockup Search/Command Bar */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-[340px] h-6 bg-[#08090a] border border-[#222324] rounded px-3 flex items-center justify-between text-[11px] text-[#8a8f98]">
-              <span>App freezes on splash screen...</span>
-              <div className="flex gap-1">
-                <span className="text-[9px]">⌘</span><span className="text-[9px]">K</span>
-              </div>
-            </div>
-
+          <div className="mt-12">
+            <Button variant="outline" href="/services">View All Services →</Button>
           </div>
         </div>
+      </section>
 
-      </main>
-    </div>
+      {/* 4. The Arsenal (Full) */}
+      <Arsenal />
+
+      {/* 5. Battle Log Preview (3 rows) */}
+      <BattleLog limit={3} />
+      <div className="max-w-[1400px] mx-auto px-6 md:px-8 pb-24 -mt-12">
+        <Link href="/about#events" className="text-[#8a8f98] hover:text-white flex items-center gap-2 transition-colors">
+          View All Events <span className="text-xl">→</span>
+        </Link>
+      </div>
+
+      {/* 6. Testimonials (2 cards) */}
+      <Testimonials limit={2} />
+
+      {/* 7. Final CTA Banner */}
+      <section className="py-24 px-6 md:px-8 max-w-[1400px] mx-auto text-center">
+        <div className="bg-[#161718] border border-[#222324] rounded-3xl p-12 md:p-20 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
+          <SectionHeading className="mb-6">Ready to Host Your Next CTF?</SectionHeading>
+          <p className="text-[18px] text-[#8a8f98] mb-10 max-w-[600px] mx-auto">
+            Join the colleges and organisations that trust CyberCom to run their competitions.
+          </p>
+          <Button href="/contact" className="px-10 py-4 text-lg gap-2">
+            Get in Touch <span className="text-2xl leading-none">→</span>
+          </Button>
+        </div>
+      </section>
+    </main>
   );
 }

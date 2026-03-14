@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal, CheckCircle2, Circle, Clock, GitCommitHorizontal, MessageSquare, Plus, FileCode2, Play } from "lucide-react";
+import { Terminal, CheckCircle2, Circle, Clock, GitCommitHorizontal, MessageSquare, Play } from "lucide-react";
 
 export function InteractiveDemo() {
   const [step, setStep] = useState(0);
